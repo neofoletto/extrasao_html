@@ -18,7 +18,7 @@
  */
 package code;
 
-import manip_files.ManipTXT;
+import manip_files.ManipHTML;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,32 +30,42 @@ import java.net.URL;
 
 public class ExtradorURL {
 
-  final private String URL = "https://www.urionlinejudge.com.br/judge/en/profile/";
-  final private String INICIO = "profile-bar";
-  final private String FIM = "information-box";
-  private boolean mostra = false;
   private String texto = "";
 
-  ExtradorURL() {
+  public ExtradorURL() {
 
   }
 
-  public String uri(String code) {
+  public ExtradorURL(String url, String code) {
+    switch (url.split(".")[1]) {
+      case "urionlinejudge":
+        uri(url, code);
+        break;
+
+      default:
+        return;
+    }
+  }
+
+  public String uri(String siteUrl, String code) {
     Usuario user = new Usuario();
+    String INICIOURI = "profile-bar";
+    String FIMURI = "information-box";
     String textoHtml = "";
+    boolean mostra = false;
 
     try {
-      java.net.URL url = new URL(this.URL + code);
+      java.net.URL url = new URL(siteUrl + code);
       URI uri = url.toURI();
       BufferedReader html = new BufferedReader(new InputStreamReader(url.openStream()));
       String aux_texto;
       while ((aux_texto = html.readLine()) != null) {
-        if (aux_texto.toLowerCase().contains(this.INICIO))
-          this.mostra = true;
-        if (aux_texto.toLowerCase().contains(this.FIM))
-          this.mostra = false;
+        if (aux_texto.toLowerCase().contains(INICIOURI))
+          mostra = true;
+        if (aux_texto.toLowerCase().contains(FIMURI))
+          mostra = false;
 
-        if (this.mostra) {
+        if (mostra) {
           textoHtml += aux_texto + System.lineSeparator();
         }
       }
@@ -65,7 +75,7 @@ public class ExtradorURL {
         this.texto = this.texto.replaceAll(System.lineSeparator(), "").replaceAll("  ", "").replaceAll(";;", ";");
       user = new Usuario(this.texto.substring(1).split(";"));
 
-      new ManipTXT(user.getName(), textoHtml);
+      new ManipHTML(user.getName(), textoHtml);
       html.close();
     } catch (MalformedURLException excecao) {
       excecao.printStackTrace();

@@ -23,7 +23,7 @@ public class Main {
   public static void main(String[] args) {
     ExtradorURL ex = new ExtradorURL();
 
-    System.out.println(ex.uri("4044"));
+    System.out.println(ex.uri("https://www.urionlinejudge.com.br/judge/en/profile/", "1515"));
 
   }
 }

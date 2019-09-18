@@ -35,15 +35,26 @@ public class Usuario {
   }
 
   public Usuario(String[] informacao) {
+    int count = 6;
     setName(informacao[0]);
     setPlace(informacao[2]);
     setCountry(informacao[4]);
-    setUniversity(informacao[6]);
-    setSince(informacao[8]);
-    setPontis(informacao[10]);
-    setSolved(informacao[12]);
-    setTried(informacao[14]);
-    setSubmissions(informacao[16]);
+    if ("Since".equalsIgnoreCase(informacao[count])) {
+      setUniversity(informacao[count]);
+      setSince(informacao[count += 2]);
+      setPontis(informacao[count += 2]);
+      setSolved(informacao[count += 2]);
+      setTried(informacao[count += 2]);
+      setSubmissions(informacao[count += 2]);
+    } else {
+      setUniversity(" ");
+      setSince(informacao[++count]);
+      setPontis(informacao[count += 2]);
+      setSolved(informacao[count += 2]);
+      setTried(informacao[count += 2]);
+      setSubmissions(informacao[count += 2]);
+    }
+
   }
 
   public String getPlace() {

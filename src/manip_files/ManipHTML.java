@@ -28,14 +28,14 @@ import java.util.Scanner;
  * @author neo
  * @date 12/09/2019
  */
-public class ManipTXT {
+public class ManipHTML {
 
   final private String EXTENSAO = ".html";
   final private String PATH = "file/";
   private String nomeDoArquivo = "";
   private Formatter output = null;
 
-  public ManipTXT(String nomeDoArquivo, String texto) {
+  public ManipHTML(String nomeDoArquivo, String texto) {
     setNomeDoArquivo(nomeDoArquivo);
     if (!abrirArquivo())
       return;
