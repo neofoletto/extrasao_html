@@ -12,6 +12,10 @@
  * software and other kinds of works.
  */
 
+/**
+ * @author neo, JotaSouza
+ * @date 12/09/2019s
+ */
 package manip_files;
 
 import java.io.File;
@@ -19,7 +23,6 @@ import java.io.FileNotFoundException;
 import java.util.Formatter;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-import java.util.Vector;
 
 /**
  * @author neo
@@ -28,21 +31,24 @@ import java.util.Vector;
 public class ManipTXT {
 
   final private String EXTENSAO = ".html";
-  final private String PATH     = "file/";
-  private String nomeDoArquivo  = "semnome" + EXTENSAO;
-  private Formatter output      = null;
+  final private String PATH = "file/";
+  private String nomeDoArquivo = "";
+  private Formatter output = null;
 
   public ManipTXT(String nomeDoArquivo, String texto) {
     setNomeDoArquivo(nomeDoArquivo);
-    abrirArquivo();
+    if (!abrirArquivo())
+      return;
     escrever(texto);
     fecharArquivo();
   }
 
   public boolean abrirArquivo() {
     try {
-      output = new Formatter(new File(this.nomeDoArquivo));
-      return true;
+      if (!nomeDoArquivo.isEmpty()) {
+        output = new Formatter(new File(this.nomeDoArquivo));
+        return true;
+      }
     } catch (SecurityException se) {
       System.out.println("Voce nao tem permissao para gravar este arquivo - ");
       System.out.print(se);
@@ -74,7 +80,7 @@ public class ManipTXT {
 
   public String ler() {
     Scanner input = null;
-    Vector<String> vetor = new Vector<String>();
+    StringBuilder builder = new StringBuilder();
     try {
       input = new Scanner(new File(this.nomeDoArquivo));
     } catch (SecurityException se) {
@@ -88,7 +94,7 @@ public class ManipTXT {
     }
     try {
       while (input.hasNext())
-        vetor.add(input.nextLine());
+        builder.append(input.nextLine());
     } catch (NoSuchElementException nsee) {
       System.out.println("Arquivo esta mal formatado. - ");
       System.out.print(nsee);
@@ -102,7 +108,7 @@ public class ManipTXT {
     if (input != null) {
       input.close();
     }
-    return vetor.toString();
+    return builder.toString();
   }
 
   public void limparArquivo() {
@@ -114,7 +120,9 @@ public class ManipTXT {
   }
 
   public void setNomeDoArquivo(String nomeDoArquivo) {
-    if (nomeDoArquivo.length() != 0)
+    if (nomeDoArquivo != null)
       this.nomeDoArquivo = PATH + nomeDoArquivo.replace(" ", "").replace(".", "") + EXTENSAO;
+    else
+      this.nomeDoArquivo = "";
   }
 }

@@ -13,117 +13,133 @@
  */
 
 /**
- * @author neo
+ * @author neo, JotaSouza
  * @date 12/09/2019
  */
 package code;
 
 public class Usuario {
 
-    private String place;
-    private String country;
-    private String university;
-    private String since;
-    private String pontis;
-    private String solved;
-    private String tried;
-    private String Submissions;
-    private String name;
+  private String name;
+  private String place;
+  private String country;
+  private String university;
+  private String since;
+  private String pontis;
+  private String solved;
+  private String tried;
+  private String Submissions;
 
-    public String getPlace() {
-        return place;
-    }
+  public Usuario() {
 
-    public void setPlace(String place) {
-        if (place.length() != 0)
-            this.place = place;
-    }
+  }
 
-    public String getCountry() {
-        return country;
-    }
+  public Usuario(String[] informacao) {
+    setName(informacao[0]);
+    setPlace(informacao[2]);
+    setCountry(informacao[4]);
+    setUniversity(informacao[6]);
+    setSince(informacao[8]);
+    setPontis(informacao[10]);
+    setSolved(informacao[12]);
+    setTried(informacao[14]);
+    setSubmissions(informacao[16]);
+  }
 
-    public void setCountry(String country) {
-        if (country.length() != 0)
-            this.country = country;
-    }
+  public String getPlace() {
+    return place;
+  }
 
-    public String getUniversity() {
-        return university;
-    }
+  public void setPlace(String place) {
+    if (place.length() != 0)
+      this.place = place;
+  }
 
-    public void setUniversity(String university) {
-        if (university.length() != 0)
-            this.university = university;
-    }
+  public String getCountry() {
+    return country;
+  }
 
-    public String getSince() {
-        return since;
-    }
+  public void setCountry(String country) {
+    if (country.length() != 0)
+      this.country = country;
+  }
 
-    public void setSince(String since) {
-        if (since.length() != 0)
-            this.since = since;
-    }
+  public String getUniversity() {
+    return university;
+  }
 
-    public String getPontis() {
-        return pontis;
-    }
+  public void setUniversity(String university) {
+    if (university.length() != 0)
+      this.university = university;
+  }
 
-    public void setPontis(String pontis) {
+  public String getSince() {
+    return since;
+  }
 
-        if (pontis.length() != 0)
-            this.pontis = pontis;
-    }
+  public void setSince(String since) {
+    if (since.length() != 0)
+      this.since = since;
+  }
 
-    public String getSolved() {
-        return solved;
-    }
+  public String getPontis() {
+    return pontis;
+  }
 
-    public void setSolved(String solved) {
+  public void setPontis(String pontis) {
 
-        if (solved.length() != 0)
-            this.solved = solved;
-    }
+    if (pontis.length() != 0)
+      this.pontis = pontis;
+  }
 
-    public String getTried() {
-        return tried;
-    }
+  public String getSolved() {
+    return solved;
+  }
 
-    public void setTried(String tried) {
-        if (tried.length() != 0)
-            this.tried = tried;
-    }
+  public void setSolved(String solved) {
 
-    public String getSubmissions() {
-        return Submissions;
-    }
+    if (solved.length() != 0)
+      this.solved = solved;
+  }
 
-    public void setSubmissions(String submissions) {
-        if (submissions.length() != 0)
-            Submissions = submissions;
-    }
+  public String getTried() {
+    return tried;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public void setTried(String tried) {
+    if (tried.length() != 0)
+      this.tried = tried;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getSubmissions() {
+    return Submissions;
+  }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Usuario").append("\n");
-        sb.append("Name:        ").append(name).append('\n');
-        sb.append("Place:       ").append(place).append('\n');
-        sb.append("Country:     ").append(country).append('\n');
-        sb.append("University:  ").append(university).append('\n');
-        sb.append("Since:       ").append(since).append('\n');
-        sb.append("Pontis:      ").append(pontis).append('\n');
-        sb.append("Solved:      ").append(solved).append('\n');
-        sb.append("Tried:       ").append(tried).append('\n');
-        sb.append("Submissions: ").append(Submissions);
-        return sb.toString();
-    }
+  public void setSubmissions(String submissions) {
+    if (submissions.length() != 0)
+      Submissions = submissions;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  @Override
+  public String toString() {
+    final StringBuilder sb = new StringBuilder("Usuario").append("\n");
+    sb.append("Name:        ").append(name).append('\n');
+    sb.append("Place:       ").append(place).append('\n');
+    sb.append("Country:     ").append(country).append('\n');
+    sb.append("University:  ").append(university).append('\n');
+    sb.append("Since:       ").append(since).append('\n');
+    sb.append("Pontis:      ").append(pontis).append('\n');
+    sb.append("Solved:      ").append(solved).append('\n');
+    sb.append("Tried:       ").append(tried).append('\n');
+    sb.append("Submissions: ").append(Submissions);
+    return sb.toString();
+  }
 }
